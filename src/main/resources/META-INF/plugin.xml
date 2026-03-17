@@ -9,7 +9,16 @@
     <resource-bundle>messages.MyBundle</resource-bundle>
 
     <extensions defaultExtensionNs="com.intellij">
-        <toolWindow factoryClass="com.github.ryanxie0827.omnifeedx.toolWindow.MyToolWindowFactory" id="MyToolWindow"/>
-        <postStartupActivity implementation="com.github.ryanxie0827.omnifeedx.startup.MyProjectActivity" />
+        <toolWindow id="OmniFeedX"
+                    secondary="false"
+                    anchor="right"
+                    icon="AllIcons.General.Web"
+                    factoryClass="com.github.ryanxie0827.omnifeedx.ui.OmniFeedToolWindowFactory"/>
+
+        <applicationService serviceImplementation="com.github.ryanxie0827.omnifeedx.settings.OmniFeedSettingsState"/>
+
+        <applicationConfigurable instance="com.github.ryanxie0827.omnifeedx.settings.OmniFeedSettingsConfigurable"
+                                 parentId="tools"
+                                 displayName="OmniFeedX AI"/>
     </extensions>
 </idea-plugin>

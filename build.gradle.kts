@@ -16,7 +16,7 @@ version = providers.gradleProperty("pluginVersion").get()
 
 // Set the JVM language level used to build the project.
 kotlin {
-    jvmToolchain(21)
+    jvmToolchain(17)
 }
 
 // Configure project's dependencies
@@ -33,6 +33,24 @@ repositories {
 dependencies {
     testImplementation(libs.junit)
     testImplementation(libs.opentest4j)
+
+    // ==========================================
+    // OmniFeedX 核心业务依赖 (HTTP, JSON, HTML解析)
+    // ==========================================
+
+    // 1. OkHttp: 用于发起网络请求，调用大模型 API (如 OpenAI/DeepSeek) 及获取外部新闻/电商数据
+    implementation("com.squareup.okhttp3:okhttp:4.12.0")
+
+    // 2. Gson: 用于处理 JSON 数据的序列化和反序列化
+    implementation("com.google.code.gson:gson:2.10.1")
+
+    // 3. Jsoup: HTML 解析神器。用于把复杂网页的“正文”提取出来喂给 AI，大幅节省 Token 并提高分析准确度
+    implementation("org.jsoup:jsoup:1.17.2")
+
+    // 4. CommonMark: 用于处理 Markdown 数据
+    implementation("org.commonmark:commonmark:0.21.0") // 新增：用于 Markdown 渲染 HTML
+
+    // ==========================================
 
     // IntelliJ Platform Gradle Plugin Dependencies Extension - read more: https://plugins.jetbrains.com/docs/intellij/tools-intellij-platform-gradle-plugin-dependencies-extension.html
     intellijPlatform {
